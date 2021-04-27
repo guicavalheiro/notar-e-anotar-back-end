@@ -1,0 +1,23 @@
+services:
+    backend:
+        # image: notareanotarbackend
+        ports:
+            - "80:8080"
+        networks:
+            - back-tier
+        build: .
+    database:
+        image: notareanotardatabase
+        volumes:
+            - db-data:/home/data
+        ports:
+            - "27017:27017"
+        networks: 
+            - back-tier
+        build: ../notar-e-anotar-database/Dockerfile
+
+volumes:
+    db-data:
+
+networks:
+    back-tier: {}
